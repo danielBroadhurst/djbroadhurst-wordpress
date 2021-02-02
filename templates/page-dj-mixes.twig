@@ -1,0 +1,53 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<div class="content-wrapper" id="article">
+    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+        <section class="home-article-content" id="intro">
+            <h1 class="article-h1">{{post.title}}</h1>
+            <nav class="nav-main">
+                <ul>
+                    <li><a href="/dj-mixes/deep-house-disco-mixes/">Deep House &amp; Disco Podcast</a></li>
+                    <li><a href="/dj-mixes/live-recordings/">Live Recordings</a></li>
+                </ul>
+            </nav>
+            <div class="article-body dj-mixes">
+                {% for post in dj_mixes %}
+                <div class="mix" id="{{post.slug}}">
+                    <a href="{{post.link}}">
+                        <p class="text-center">{{post.post_title}}</p>
+                    </a>
+                    {% if post.get_thumbnail %}
+                    <a href="{{post.link}}"><img src="{{post.thumbnail.src}}" /></a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+            </div>
+        </section>
+    </article>
+    <article class="related-posts-area">
+        <div class="article-body related">
+            <h2>Related Posts</h2>
+            <div class="related-cards">
+                {% for post in related_posts %}
+                {% if post.thumbnail %}
+                <div class="track">
+                    <a href="{{post.link}}">
+                        <figure>
+                            <img src="{{post.thumbnail.src}}" alt="{{post.title}}">
+                        </figure>
+                        <figcaption>
+                            <p>{{ post.title }}</p>
+                        </figcaption>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </article>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% block html_head_container %}
+
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+</head>
+{% endblock %}
+
+<body class="{{body_class}}" data-template="base.twig">
+    {% block header %}
+    
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                {% include "menu.twig" with {'menu': menu.get_items} %}
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        {% if post.get_thumbnail %}
+        <div class="home-featured overlay">
+            <img src="{{post.thumbnail.src}}" class="featured-img-home">
+        </div>
+        {% else %}
+        <div class="home-featured overlay">
+            <img src="/wp-content/uploads/2019/03/151127_genremusic_044.jpg" class="featured-img-home">
+        </div>
+        {% endif %}
+        <img src="/wp-content/uploads/2019/03/DJ-Logo-daniel-broadhurst-white-see-through-707x250.png" class="home-logo">
+        <div class="social">
+            <a href="https://www.instagram.com/djbroadhurst/" target="_blank"><img src="https://djbroadhurst.co.uk/wp-content/uploads/2019/03/ig-logo-email.png"></a>
+            <a href="https://www.facebook.com/danielbroadhurst.dj/" target="_blank"><img src="https://djbroadhurst.co.uk/wp-content/uploads/2019/03/fb-logo.png"></a>
+            <a href="https://twitter.com/dj_broadhurst" target="_blank"><img src="https://djbroadhurst.co.uk/wp-content/uploads/2019/03/Twitter.png"></a>
+        </div>
+    </header>
+    {% endblock %}
+
+    <section id="content" role="main" class="container">
+        <div class="content">
+            <div class="content-wrapper" id="article">
+                <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+                    {% block content %}
+                    Sorry, no content
+                    {% endblock %}
+                </article>
+            </div>
+        </div>
+        {% if sidebar %}
+        <aside class="sidebar" id="sidebar">
+            {{ sidebar }}
+        </aside>
+        {% endif %}
+    </section>
+
+    {% block footer %}
+    <footer id="footer">
+        {% include 'footer.twig' %}
+    </footer>
+    {{ function('wp_footer') }}
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+        <section class="home-article-content" id="intro">
+            <h1 class="article-h1">{{ post.title }}</h1>
+            <div class="article-body">
+                <div class="section-text">
+                    {{post.content}}
+                </div>
+            </div>
+        </section>
+    </article>
+    <article class="related-posts-area">
+        <div class="article-body related">
+            <h2>Related Posts</h2>
+            <div class="related-cards">
+                {% for post in related_posts %}
+                {% if post.thumbnail %}
+                <div class="track">
+                    <a href="{{post.link}}">
+                        <figure>
+                            <img src="{{post.thumbnail.src}}" alt="{{post.title}}">
+                        </figure>
+                        <figcaption>
+                            <p>{{ post.title }}</p>
+                        </figcaption>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </article>
+</div><!-- /content-wrapper -->
+{% endblock %}

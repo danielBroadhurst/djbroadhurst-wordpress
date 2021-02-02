@@ -1,0 +1,99 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<section class="home-article-content" id="intro">
+    <h1 class="article-h1">{{post.section_1_header}}</h1>
+    <div class="article-body">
+        <div class="section-image">
+            <img src="{{Image(post.meta('section_1_image')).src}}">
+        </div>
+        <div class="section-text">
+            {{post.section_1_text}}
+        </div>
+    </div>
+</section>
+
+<section class="home-article-content" id="residencies">
+    <h2 class="article-h1">Residencies</h2>
+    <div class="article-body">
+        <h3>The Ivy Manchester</h3>
+        <div class="blog-flex">
+            <img src="{{Image(post.meta('residency_image_1')).src}}">
+            <p>{{post.residency_1}}<br />
+                URL: <a href="{{post.residency_url_1}}">The Ivy Manchester</a></p>
+        </div>
+        <h3 class="text-right">Be At One Manchester</h3>
+        <div class="blog-flex odd">
+            <img src="{{Image(post.meta('residency_image_2')).src}}">
+            <p>{{post.residency_2}}<br />
+                URL: <a href="{{post.residency_url_2}}">Be At One Manchester</a></p>
+        </div>
+        <h3>Blind Tiger Bury</h3>
+        <div class="blog-flex">
+            <img src="{{Image(post.meta('residency_image_3')).src}}">
+            <p>{{post.residency_3}}<br />
+                URL: <a href="{{post.residency_url_3}}">Blind Tiger Bury</a>
+            </p>
+        </div>
+        <h3 class="text-right">Sunset by Australasia</h3>
+        <div class="blog-flex odd">
+            <img src="{{Image(post.meta('residency_image_4')).src}}">
+            <p>{{post.residency_4}}<br />
+                URL: <a href="{{post.residency_url_4}}">Blind Tiger Bury</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="home-article-content" id="related">
+    <h2 class="article-h1">Latest Posts</h2>
+    <div class="article-body-full">
+        <div id="related-gallery-feed" class="instafeed-container">
+            {% for post in related_posts_home %}
+            {% if post.thumbnail %}
+            <div class="insta-feed"><a href="{{post.link}}">
+                    <div class="img-featured-container">
+                        <div class="img-backdrop"></div>
+                        <div class="description-container">
+                            <p class="caption">{{ post.title }}</p>
+                        </div><img src="{{post.thumbnail.src}}" alt="{{post.title}}" class="img-responsive">
+                    </div>
+                </a></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="home-article-content" id="dj-mixes">
+    <h2 class="article-h1">DJ Mixes</h2>
+    <div class="article-body dj-mix-section">
+        <h3><a href="https://dev.beedesignstudio.co.uk/djbroadhurst/dj-mixes/deep-house-disco-mixes/">Deep House &amp; Disco</a></h3>
+        <div class="blog-flex">
+            {{post.dj_mix_1}}
+            <p>{{post.dj_mix_description_1}}<br />
+                Click the UP NEXT section to gain access to all the episodes.</p>
+        </div>
+        <h3 class="text-right"><a href="https://dev.beedesignstudio.co.uk/djbroadhurst/dj-mixes/live-recordings/">Live DJ Mixes</a></h3>
+        <div class="blog-flex odd">
+            {{post.dj_mix_4}}
+            <p>{{post.dj_mix_description_4}}<br />
+                Click the UP NEXT section to gain access to all the episodes.</p>
+        </div>
+    </div>
+</section>
+
+<section class="home-article-content" id="instagram">
+    <h2 class="article-h1">Instagram</h2>
+    <div class="article-body-full">
+        <div id="instafeed-gallery-feed" class="instafeed-container">
+            <!--Instagram Feed will show here-->
+        </div>
+    </div>
+</section>
+
+
+<script src="{{ site.theme.link }}/js/instafeed.min.js"></script>
+<script src="{{ site.theme.link }}/js/feed.js"></script>
+{% endblock %}

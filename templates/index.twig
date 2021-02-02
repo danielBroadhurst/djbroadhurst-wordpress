@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<section class="home-article-content" id="intro">
+    <h1 class="article-h1">{% if title %}{{title}}{% else %}Latest News{% endif %}</h1>
+    <div class="article-body">
+        {% for post in posts %}
+        {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+        <hr class="wp-block-separator is-style-wide">
+        {% endfor %}
+
+        {% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+    </div>
+</section>
+
+
+{% endblock %}
